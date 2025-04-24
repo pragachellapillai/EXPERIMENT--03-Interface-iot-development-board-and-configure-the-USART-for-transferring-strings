@@ -1,12 +1,12 @@
 # EXPERIMENT--03-INTERFACING IOT DEVELOPMENT BOARD AND CONFIGURE USART FOR TRANSFERRING STRINGS 
 
-**DATE:**
 
-**NAME:**
 
-**ROLL NO:**
+**NAME:Pragaharshitha NC**
 
-**DEPARTMENT:**
+**ROLL NO:212222110033**
+
+**DEPARTMENT:CSE(IOT)**
 
 ## Aim:
 
@@ -91,12 +91,49 @@ UART transmits and receives data asynchronously, meaning there is no shared cloc
 
 ## STM 32 CUBE PROGRAM :
 
+```
 
+#include "main.h"
+#include "stdio.h"
+
+UART_HandleTypeDef huart2;
+
+void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
+static void MX_USART2_UART_Init(void);
+
+#if defined(_ICCARM) || defined(_ARMCC_VERSION)
+#define PUTCHAR_PROTOTYPE int fputc(int ch,FILE *f)
+#elif defined(_GNUC_)
+#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+#endif
+int main(void)
+{
+  HAL_Init();                 // Initialize HAL library
+  SystemClock_Config();       // Configure system clock
+  MX_GPIO_Init();             // Initialize GPIOs
+  MX_USART2_UART_Init();      // Initialize UART2
+
+  while (1)
+  {
+    printf(" saveetha engineerng college\n");
+    printf("scoft\n");
+    HAL_Delay(500);          // 500ms delay
+  }
+}
+PUTCHAR_PROTOTYPE
+{
+  HAL_UART_Transmit(&huart2, (uint8_t *)&ch, 1, 0xFFFF);
+  return ch;
+}
+
+```
 
 ## Output screen shots of Serial port utility   :
  
  
- 
+ ![Screenshot 2025-04-24 121708](https://github.com/user-attachments/assets/a17ad017-3ea6-44e2-8a61-cb5a18ec63a8)
+
  
 ## Result :
 The IoT development board was successfully interfaced, and the USART was configured to transmit strings. The transmitted data was verified using a serial monitor, confirming proper communication.
